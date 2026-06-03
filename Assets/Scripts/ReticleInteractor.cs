@@ -48,13 +48,12 @@ public class ReticleInteractor : MonoBehaviour
         Mouse mouse = Mouse.current;
         UpdateHoveredOutline();
 
-        if (mouse != null && mouse.leftButton.wasPressedThisFrame)
+        if (mouse != null && mouse.leftButton.wasPressedThisFrame && currentInteractable is not IKeyOnlyInteractable)
         {
             TryInteractCurrentHover();
         }
 
-        // also allow a configurable keyboard key to interact
-        if (Keyboard.current != null && Keyboard.current[interactionKey].wasPressedThisFrame)
+        if (Keyboard.current != null && Keyboard.current[interactionKey].wasPressedThisFrame && currentInteractable is not IMouseOnlyInteractable)
         {
             TryInteractCurrentHover();
         }

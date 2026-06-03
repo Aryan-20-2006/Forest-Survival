@@ -12,14 +12,13 @@ public class HungerSystem : MonoBehaviour
     public float hungerDrainRate = 2f;
 
     public Image hungerFill;
-    [TextArea]
     [SerializeField] private TMP_Text hungerWarningText;
 
     [Header("Hunger Bar Colors")]
     [SerializeField] private Color fullHungerColor = new Color(0.2f, 0.9f, 0.2f, 1f);
     [SerializeField] private Color muddyHungerColor = new Color(0.45f, 0.55f, 0.18f, 1f);
     [SerializeField] private Color lowHungerColor = new Color(0.9f, 0.2f, 0.2f, 1f);
-    [SerializeField, Range(0f, 1f)] private float hungerWarningThreshold = 0.25f;
+    [SerializeField, Range(0f, 1f)] private float hungerWarningThreshold = 0.1f;
     [TextArea]
     [SerializeField] private string hungerWarningMessage = "🍖 Need food soon!";
     [SerializeField, Min(0f)] private float warningFadeDuration = 0.25f;
@@ -64,6 +63,7 @@ public class HungerSystem : MonoBehaviour
 
         currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger);
         UpdateHungerBarVisuals();
+        UpdateHungerWarningText(IsHungerWarningActive());
 
         if(currentHunger <= 0)
         {
@@ -117,14 +117,10 @@ public class HungerSystem : MonoBehaviour
     private void UpdateHungerBarVisuals()
     {
         if (hungerFill == null || maxHunger <= 0f)
-        {
-            UpdateHungerWarningText(false);
             return;
-        }
 
         float hungerT = Mathf.Clamp01(currentHunger / maxHunger);
         hungerFill.fillAmount = hungerT;
-        UpdateHungerWarningText(hungerT <= hungerWarningThreshold && !hasStarved);
 
         if (hungerT >= 0.5f)
         {

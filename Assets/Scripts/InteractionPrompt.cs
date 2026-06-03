@@ -7,6 +7,7 @@ public class InteractionPrompt : MonoBehaviour
 
     [SerializeField] private TMP_Text promptText;
     [SerializeField] private GameObject promptRoot;
+    [SerializeField] private ReticleInteractor reticleInteractor;
 
     private void Awake()
     {
@@ -20,9 +21,25 @@ public class InteractionPrompt : MonoBehaviour
         if (promptRoot != null) promptRoot.SetActive(false);
     }
 
+    private void Start()
+    {
+        if (reticleInteractor == null)
+            reticleInteractor = FindFirstObjectByType<ReticleInteractor>();
+
+        if (reticleInteractor != null)
+        {
+            reticleInteractor.OnHoverEnter += Show;
+            reticleInteractor.OnHoverExit += Hide;
+        }
+    }
+
     private void OnDestroy()
     {
-        // no automatic subscription; UI should subscribe explicitly if used
+        if (reticleInteractor != null)
+        {
+            reticleInteractor.OnHoverEnter -= Show;
+            reticleInteractor.OnHoverExit -= Hide;
+        }
     }
 
     public void Show(string text)

@@ -1,12 +1,15 @@
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class CampfireDeposit : MonoBehaviour, IInteractable, IInteractionInfo
+public class CampfireDeposit : MonoBehaviour, IInteractable, IKeyOnlyInteractable
 {
     [Header("Deposit Settings")]
     [SerializeField] private int storedWood;
     [SerializeField, Min(0)] private int maxCapacity = 20;
-    [SerializeField] private string depositPrompt = "Press E to deposit wood";
+
+    [Header("Prompt UI")]
+    [SerializeField] private TMP_Text promptLabel;
 
     [Header("Burn Settings")]
     [Tooltip("Seconds each wood contributes to the burn. Set 3-6 for a full campfire to last about 1-2 minutes.")]
@@ -21,11 +24,11 @@ public class CampfireDeposit : MonoBehaviour, IInteractable, IInteractionInfo
 
     public int StoredWood => storedWood;
     public int MaxCapacity => maxCapacity;
-    public string GetInteractionText() => depositPrompt;
 
     public event System.Action<int> OnStoredWoodChanged;
 
     private float burnFuelRemaining;
+    private ReticleInteractor reticleInteractor;
 
     private void Awake()
     {
@@ -42,6 +45,40 @@ public class CampfireDeposit : MonoBehaviour, IInteractable, IInteractionInfo
             campfireLight.enabled = true;
             campfireLight.intensity = GetTargetIntensity();
         }
+    }
+
+    private void Start()
+    {
+        if (promptLabel != null)
+        {
+            promptLabel.gameObject.SetActive(false);
+            reticleInteractor = FindFirstObjectByType<ReticleInteractor>();
+            if (reticleInteractor != null)
+            {
+                reticleInteractor.OnHoverEnter += OnHoverEnter;
+                reticleInteractor.OnHoverExit += OnHoverExit;
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (reticleInteractor != null)
+        {
+            reticleInteractor.OnHoverEnter -= OnHoverEnter;
+            reticleInteractor.OnHoverExit -= OnHoverExit;
+        }
+    }
+
+    private void OnHoverEnter(string text)
+    {
+        if (reticleInteractor.CurrentInteractable == (IInteractable)this)
+            promptLabel.gameObject.SetActive(true);
+    }
+
+    private void OnHoverExit()
+    {
+        promptLabel.gameObject.SetActive(false);
     }
 
     private void Update()

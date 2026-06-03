@@ -18,6 +18,8 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField] private float dayStartsAt = 6f;
     [Range(0f, 24f)]
     [SerializeField] private float nightStartsAt = 18f;
+    [Tooltip("How many game-hours before nightStartsAt the OnNightApproaching event fires.")]
+    [SerializeField, Min(0f)] private float nightWarningHoursBefore = 1f;
 
     [Header("Lighting")]
     [SerializeField] private Gradient lightColorOverDay;
@@ -46,9 +48,11 @@ public class DayNightCycle : MonoBehaviour
     private bool paused;
     private float currentSkyboxExposure;
     private bool isNight;
+    private bool isNightApproaching;
 
     public event Action OnNightStarted;
     public event Action OnNightEnded;
+    public event Action OnNightApproaching;
 
     private void Awake()
     {
@@ -60,6 +64,7 @@ public class DayNightCycle : MonoBehaviour
         timeOfDay = Mathf.Repeat(startTimeOfDay, 24f);
         paused = startPaused;
         isNight = IsNightTime(timeOfDay);
+        isNightApproaching = IsNightApproachingTime(timeOfDay);
         currentSkyboxExposure = GetSkyboxExposure();
         ApplyLightingImmediate();
     }
@@ -89,16 +94,22 @@ public class DayNightCycle : MonoBehaviour
     private void AdvanceTime()
     {
         bool wasNight = isNight;
+        bool wasApproaching = isNightApproaching;
         float hoursPerSecond = 24f / Mathf.Max(0.1f, dayLengthMinutes * 60f);
         timeOfDay = Mathf.Repeat(timeOfDay + hoursPerSecond * Time.deltaTime, 24f);
 
         isNight = IsNightTime(timeOfDay);
+        isNightApproaching = IsNightApproachingTime(timeOfDay);
+
+        if (!wasApproaching && isNightApproaching)
+            OnNightApproaching?.Invoke();
+
         if (!wasNight && isNight)
-        {
             OnNightStarted?.Invoke();
-        }
+
         if (wasNight && !isNight)
         {
+            isNightApproaching = false;
             OnNightEnded?.Invoke();
         }
     }
@@ -191,6 +202,15 @@ public class DayNightCycle : MonoBehaviour
         }
 
         return hour >= nightStartsAt && hour < dayStartsAt;
+    }
+
+    private bool IsNightApproachingTime(float hour)
+    {
+        if (IsNightTime(hour) || nightWarningHoursBefore <= 0f) return false;
+        float threshold = Mathf.Repeat(nightStartsAt - nightWarningHoursBefore, 24f);
+        float distToThreshold = Mathf.Repeat(hour - threshold, 24f);
+        float windowSize = Mathf.Repeat(nightStartsAt - threshold, 24f);
+        return distToThreshold < windowSize;
     }
 
     private float GetSunPitch(float hour)

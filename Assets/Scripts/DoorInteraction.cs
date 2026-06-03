@@ -1,7 +1,8 @@
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class DoorInteraction : MonoBehaviour, IInteractable
+public class DoorInteraction : MonoBehaviour, IInteractable, IKeyOnlyInteractable
 {
     [Header("Debug")]
     [SerializeField] private bool debugLogs = false;
@@ -11,10 +12,13 @@ public class DoorInteraction : MonoBehaviour, IInteractable
     [SerializeField] private Vector3 openLocalEulerAngles = new Vector3(0f, 90f, 0f);
     [SerializeField] private float rotationSpeed = 6f;
 
-    private bool playerInRange;
+    [Header("Prompt UI")]
+    [SerializeField] private TMP_Text promptLabel;
+
     private bool isOpen;
     private Quaternion closedRotation;
     private Quaternion openRotation;
+    private ReticleInteractor reticleInteractor;
 
     private void Awake()
     {
@@ -22,6 +26,40 @@ public class DoorInteraction : MonoBehaviour, IInteractable
         openRotation = Quaternion.Euler(openLocalEulerAngles);
         transform.localRotation = closedRotation;
         isOpen = false;
+    }
+
+    private void Start()
+    {
+        if (promptLabel != null)
+        {
+            promptLabel.gameObject.SetActive(false);
+            reticleInteractor = FindFirstObjectByType<ReticleInteractor>();
+            if (reticleInteractor != null)
+            {
+                reticleInteractor.OnHoverEnter += OnHoverEnter;
+                reticleInteractor.OnHoverExit += OnHoverExit;
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (reticleInteractor != null)
+        {
+            reticleInteractor.OnHoverEnter -= OnHoverEnter;
+            reticleInteractor.OnHoverExit -= OnHoverExit;
+        }
+    }
+
+    private void OnHoverEnter(string text)
+    {
+        if (reticleInteractor.CurrentInteractable == (IInteractable)this)
+            promptLabel.gameObject.SetActive(true);
+    }
+
+    private void OnHoverExit()
+    {
+        promptLabel.gameObject.SetActive(false);
     }
 
     private void Update()

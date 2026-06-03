@@ -1,24 +1,61 @@
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class AxePickup : MonoBehaviour, IInteractable
+public class AxePickup : MonoBehaviour, IInteractable, IKeyOnlyInteractable
 {
     [Header("Setup")]
     [Tooltip("The handaxe object that should appear in the player's view after pickup.")]
     [SerializeField] private GameObject handaxe;
     [SerializeField] private bool hidePickupObjectOnCollect = true;
 
+    [Header("Prompt UI")]
+    [SerializeField] private TMP_Text promptLabel;
+
     private Collider pickupCollider;
     private bool collected;
+    private ReticleInteractor reticleInteractor;
 
     private void Awake()
     {
         pickupCollider = GetComponent<Collider>();
 
         if (handaxe != null)
-        {
             handaxe.SetActive(false);
+    }
+
+    private void Start()
+    {
+        if (promptLabel != null)
+        {
+            promptLabel.gameObject.SetActive(false);
+            reticleInteractor = FindFirstObjectByType<ReticleInteractor>();
+            if (reticleInteractor != null)
+            {
+                reticleInteractor.OnHoverEnter += OnHoverEnter;
+                reticleInteractor.OnHoverExit += OnHoverExit;
+            }
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (reticleInteractor != null)
+        {
+            reticleInteractor.OnHoverEnter -= OnHoverEnter;
+            reticleInteractor.OnHoverExit -= OnHoverExit;
+        }
+    }
+
+    private void OnHoverEnter(string text)
+    {
+        if (reticleInteractor.CurrentInteractable == (IInteractable)this)
+            promptLabel.gameObject.SetActive(true);
+    }
+
+    private void OnHoverExit()
+    {
+        promptLabel.gameObject.SetActive(false);
     }
 
     public void Interact()

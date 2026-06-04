@@ -50,6 +50,10 @@ public class DayCounter : MonoBehaviour
         {
             Time.timeScale = 0f;
             Debug.Log("One day-night cycle complete. Game over.");
+
+            if (GameManager.Instance != null)
+                GameManager.Instance.ShowWin();
+
             return;
         }
 

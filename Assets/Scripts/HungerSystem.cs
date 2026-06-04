@@ -73,6 +73,9 @@ public class HungerSystem : MonoBehaviour
 
             UpdateHungerWarningText(false);
 
+            if (GameManager.Instance != null)
+                GameManager.Instance.ShowLose();
+
             if (allowRestartOnLoss)
             {
                 Debug.Log(restartLogMessage);

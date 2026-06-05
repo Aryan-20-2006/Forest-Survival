@@ -10,6 +10,10 @@ public class AxeTreeHitbox : MonoBehaviour
     [Header("Hit Control")]
     [SerializeField] private bool oneHitPerTreePerSwing = true;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip hitClip;
+
+    private AudioSource audioSource;
     private readonly HashSet<TreeChopShrink> hitTreesThisSwing = new HashSet<TreeChopShrink>();
     private Collider hitCollider;
     private bool wasSwinging;
@@ -19,14 +23,16 @@ public class AxeTreeHitbox : MonoBehaviour
         hitCollider = GetComponent<Collider>();
 
         if (swingTrigger == null)
-        {
             swingTrigger = GetComponentInParent<AxeSwingTrigger>(true);
-        }
 
         if (hitCollider != null)
-        {
             hitCollider.isTrigger = true;
-        }
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 0f;
     }
 
     private void Update()
@@ -73,5 +79,7 @@ public class AxeTreeHitbox : MonoBehaviour
         }
 
         tree.RegisterAxeHit();
+        if (hitClip != null)
+            audioSource.PlayOneShot(hitClip);
     }
 }

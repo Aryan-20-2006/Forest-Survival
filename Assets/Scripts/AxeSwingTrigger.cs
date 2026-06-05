@@ -11,6 +11,10 @@ public class AxeSwingTrigger : MonoBehaviour
     [Header("Hit Timing")]
     [SerializeField, Min(0.01f)] private float swingHitWindow = 0.2f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip swingClip;
+
+    private AudioSource audioSource;
     private float swingTimer;
 
     public bool IsSwinging => swingTimer > 0f;
@@ -18,9 +22,13 @@ public class AxeSwingTrigger : MonoBehaviour
     private void Awake()
     {
         if (animator == null)
-        {
             animator = GetComponent<Animator>();
-        }
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 0f;
     }
 
     private void Update()
@@ -40,6 +48,8 @@ public class AxeSwingTrigger : MonoBehaviour
         {
             animator.Play(swingStateName, layerIndex, 0f);
             swingTimer = swingHitWindow;
+            if (swingClip != null)
+                audioSource.PlayOneShot(swingClip);
         }
     }
 }

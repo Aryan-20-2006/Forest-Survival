@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4534264641828652, guid: 82a6bf9ca38d9d443997ccec084ba669, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 28.7
+      value: 33.62
       objectReference: {fileID: 0}
     - target: {fileID: 4534264641828652, guid: 82a6bf9ca38d9d443997ccec084ba669, type: 3}
       propertyPath: m_LocalRotation.w
@@ -314,6 +314,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 20d81ae8281300d4cbcb5dec6f056d6c, type: 3}
       propertyPath: m_Name
       value: Cabin
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 20d81ae8281300d4cbcb5dec6f056d6c, type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 20d81ae8281300d4cbcb5dec6f056d6c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1226,6 +1230,32 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 287080519}
   m_SourcePrefab: {fileID: 100100000, guid: b41ef6b0fcdee1c4b9e62aa1102626d7, type: 3}
+--- !u!1 &164890146 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6613083325949312748, guid: 596946adce049204eb665838fa0015dd, type: 3}
+  m_PrefabInstance: {fileID: 774237149}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &164890151
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164890146}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.06657284, y: 0.04774208, z: 0.024761217}
+  m_Center: {x: 0.023488676, y: 0.000109792454, z: 4.6566195e-10}
 --- !u!1 &167838208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1334,6 +1364,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167838208}
   m_CullTransparentMesh: 1
+--- !u!1 &180502704 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8295591563862043295, guid: e01f2e62cf41a3449be2dade3b2c2d79, type: 3}
+  m_PrefabInstance: {fileID: 1069160888}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &188340095
 GameObject:
   m_ObjectHideFlags: 0
@@ -2004,6 +2039,7 @@ MonoBehaviour:
   swingStateName: AxeSwing
   layerIndex: 0
   swingHitWindow: 0.2
+  swingClip: {fileID: 8300000, guid: 8162bf9f79e80ff4e8db2180c7115a38, type: 3}
 --- !u!1 &271332898
 GameObject:
   m_ObjectHideFlags: 0
@@ -2135,6 +2171,8 @@ MonoBehaviour:
   closedLocalEulerAngles: {x: 0, y: 0, z: 0}
   openLocalEulerAngles: {x: 0, y: 90, z: 0}
   rotationSpeed: 6
+  openClip: {fileID: 8300000, guid: 722f5f04038699240a16dd1cf83fd01b, type: 3}
+  closeClip: {fileID: 8300000, guid: 08e4514438c227f4ba0924036da6840e, type: 3}
   promptLabel: {fileID: 105356108}
 --- !u!65 &284342749
 BoxCollider:
@@ -2177,7 +2215,7 @@ Rigidbody:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
+  m_ImplicitCom: 0
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 1
@@ -2245,6 +2283,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &287080521
 BoxCollider:
@@ -2376,6 +2415,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &309271142
 BoxCollider:
@@ -2988,7 +3028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HungerSystem
   maxHunger: 100
   currentHunger: 100
-  hungerDrainRate: 0.5
+  hungerDrainRate: 1
   hungerFill: {fileID: 1797298052}
   hungerWarningText: {fileID: 1961134646}
   fullHungerColor: {r: 0.014631453, g: 0.5169811, b: 0.014631453, a: 1}
@@ -3031,6 +3071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireSystem
   campfireDeposit: {fileID: 0}
+  fireVFX: {fileID: 180502704}
   fireFill: {fileID: 1166858029}
   campfirePointLight: {fileID: 1307970921}
   fireWarningText: {fileID: 1841481344}
@@ -3398,7 +3439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle
   directionalLight: {fileID: 410087040}
-  dayLengthMinutes: 10
+  dayLengthMinutes: 5
   startTimeOfDay: 10
   startPaused: 0
   dayStartsAt: 6
@@ -3982,6 +4023,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &470437350
 BoxCollider:
@@ -4730,6 +4772,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &568464814
 BoxCollider:
@@ -4861,6 +4904,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &588323549
 BoxCollider:
@@ -5486,6 +5530,14 @@ MonoBehaviour:
   sprintSpeed: 7
   jumpHeight: 1.4
   gravity: -20
+  footstepClip: {fileID: 8300000, guid: 24bd4d3bb7c1ca244be8f2b8de840a6c, type: 3}
+  woodFootstepClip: {fileID: 8300000, guid: 8d94e986f9933964281e6bcfcd5145da, type: 3}
+  woodSurfaceTag: Wood
+  walkStepInterval: 0.5
+  sprintStepInterval: 0.3
+  footstepVolume: 0.6
+  sprintPitchMin: 1.1
+  sprintPitchMax: 1.4
 --- !u!143 &683007797
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5723,7 +5775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4689083990643298, guid: 1aaf3ef80841d9c4990a27fee328eb1c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 73.55
+      value: 71.39
       objectReference: {fileID: 0}
     - target: {fileID: 4689083990643298, guid: 1aaf3ef80841d9c4990a27fee328eb1c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5995,6 +6047,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5818241264881310114, guid: 596946adce049204eb665838fa0015dd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1168651344}
+    - targetCorrespondingSourceObject: {fileID: 6613083325949312748, guid: 596946adce049204eb665838fa0015dd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 164890151}
   m_SourcePrefab: {fileID: 100100000, guid: 596946adce049204eb665838fa0015dd, type: 3}
 --- !u!1001 &785812985
 PrefabInstance:
@@ -6230,6 +6285,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &790072011
 BoxCollider:
@@ -6266,7 +6322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4689083990643298, guid: 1aaf3ef80841d9c4990a27fee328eb1c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.17
+      value: 46.03
       objectReference: {fileID: 0}
     - target: {fileID: 4689083990643298, guid: 1aaf3ef80841d9c4990a27fee328eb1c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6460,6 +6516,135 @@ MonoBehaviour:
   hitsToDisappear: 3
   disableOnHitLimit: 1
   woodPerHit: 1
+--- !u!1 &817307266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 817307267}
+  - component: {fileID: 817307268}
+  m_Layer: 0
+  m_Name: ForestAmbience
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &817307267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817307266}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1778738213}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &817307268
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817307266}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: d00ebe56de82e7341af9931d8a7467fb, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &820082267
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6569,6 +6754,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &820082272
 BoxCollider:
@@ -7269,6 +7455,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &867713229
 BoxCollider:
@@ -8436,6 +8623,63 @@ MonoBehaviour:
   hitsToDisappear: 3
   disableOnHitLimit: 1
   woodPerHit: 1
+--- !u!1001 &1069160888
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8295591563862043288, guid: e01f2e62cf41a3449be2dade3b2c2d79, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 49.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295591563862043288, guid: e01f2e62cf41a3449be2dade3b2c2d79, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295591563862043288, guid: e01f2e62cf41a3449be2dade3b2c2d79, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 38.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295591563862043288, guid: e01f2e62cf41a3449be2dade3b2c2d79, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295591563862043288, guid: e01f2e62cf41a3449be2dade3b2c2d79, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295591563862043288, guid: e01f2e62cf41a3449be2dade3b2c2d79, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295591563862043288, guid: e01f2e62cf41a3449be2dade3b2c2d79, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295591563862043288, guid: e01f2e62cf41a3449be2dade3b2c2d79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295591563862043288, guid: e01f2e62cf41a3449be2dade3b2c2d79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295591563862043288, guid: e01f2e62cf41a3449be2dade3b2c2d79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295591563862043295, guid: e01f2e62cf41a3449be2dade3b2c2d79, type: 3}
+      propertyPath: m_Name
+      value: VFXFire
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e01f2e62cf41a3449be2dade3b2c2d79, type: 3}
 --- !u!1001 &1076246119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8602,6 +8846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AxeTreeHitbox
   swingTrigger: {fileID: 263673954}
   oneHitPerTreePerSwing: 1
+  hitClip: {fileID: 0}
 --- !u!65 &1085539733
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9265,6 +9510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AxePickup
   handaxe: {fileID: 263673949}
   hidePickupObjectOnCollect: 1
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 1264297750}
 --- !u!65 &1168651343
 BoxCollider:
@@ -9539,6 +9785,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &1172577203
 BoxCollider:
@@ -9670,6 +9917,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &1187863684
 BoxCollider:
@@ -10387,6 +10635,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &1270242989
 BoxCollider:
@@ -11027,6 +11276,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &1336362239
 BoxCollider:
@@ -11816,6 +12066,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &1508833489
 BoxCollider:
@@ -12201,6 +12452,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &1547713218
 BoxCollider:
@@ -12856,6 +13108,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &1622831806
 BoxCollider:
@@ -13189,11 +13442,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2006159900295350718, guid: b41ef6b0fcdee1c4b9e62aa1102626d7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.03
+      value: -1.87
       objectReference: {fileID: 0}
     - target: {fileID: 2006159900295350718, guid: b41ef6b0fcdee1c4b9e62aa1102626d7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -44.75
+      value: -46.7
       objectReference: {fileID: 0}
     - target: {fileID: 2006159900295350718, guid: b41ef6b0fcdee1c4b9e62aa1102626d7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13280,6 +13533,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &1706034139
 BoxCollider:
@@ -13664,6 +13918,39 @@ MonoBehaviour:
   hitsToDisappear: 8
   disableOnHitLimit: 1
   woodPerHit: 5
+--- !u!1 &1778738212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1778738213}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1778738213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778738212}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 817307267}
+  - {fileID: 1892312672}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1787503785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13773,6 +14060,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &1787503790
 BoxCollider:
@@ -14581,6 +14869,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &1860101561
 BoxCollider:
@@ -14961,6 +15250,135 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1892312671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1892312672}
+  - component: {fileID: 1892312673}
+  m_Layer: 0
+  m_Name: Birdschirping
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1892312672
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892312671}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1778738213}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1892312673
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892312671}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: b0d47c5e980f5f9429abe1b6ae3588ae, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1893640747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15070,6 +15488,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &1893640752
 BoxCollider:
@@ -15201,6 +15620,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &1912794872
 BoxCollider:
@@ -15241,7 +15661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4534264641828652, guid: 82a6bf9ca38d9d443997ccec084ba669, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46.3
+      value: 48.64
       objectReference: {fileID: 0}
     - target: {fileID: 4534264641828652, guid: 82a6bf9ca38d9d443997ccec084ba669, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15598,6 +16018,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &1936233943
 BoxCollider:
@@ -15795,6 +16216,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &1944813441
 BoxCollider:
@@ -16430,6 +16852,7 @@ MonoBehaviour:
   foodAmount: 1
   destroyOnPickup: 1
   foodCounter: {fileID: 0}
+  pickupClip: {fileID: 8300000, guid: bf453d96f412c4d449787829b68db3d1, type: 3}
   promptLabel: {fileID: 197529851}
 --- !u!65 &2043988051
 BoxCollider:
@@ -17066,3 +17489,5 @@ SceneRoots:
   - {fileID: 2064777947}
   - {fileID: 605694897}
   - {fileID: 974782129}
+  - {fileID: 1778738213}
+  - {fileID: 1069160888}

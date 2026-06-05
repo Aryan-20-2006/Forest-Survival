@@ -9,9 +9,14 @@ public class DoorInteraction : MonoBehaviour, IInteractable, IKeyOnlyInteractabl
     [SerializeField] private Vector3 openLocalEulerAngles = new Vector3(0f, 90f, 0f);
     [SerializeField] private float rotationSpeed = 6f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip openClip;
+    [SerializeField] private AudioClip closeClip;
+
     [Header("Prompt UI")]
     [SerializeField] private TMP_Text promptLabel;
 
+    private AudioSource audioSource;
     private bool isOpen;
     private Quaternion closedRotation;
     private Quaternion openRotation;
@@ -19,6 +24,12 @@ public class DoorInteraction : MonoBehaviour, IInteractable, IKeyOnlyInteractabl
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 1f;
+
         closedRotation = Quaternion.Euler(closedLocalEulerAngles);
         openRotation = Quaternion.Euler(openLocalEulerAngles);
         transform.localRotation = closedRotation;
@@ -68,5 +79,8 @@ public class DoorInteraction : MonoBehaviour, IInteractable, IKeyOnlyInteractabl
     public void Interact()
     {
         isOpen = !isOpen;
+        AudioClip clip = isOpen ? openClip : closeClip;
+        if (clip != null)
+            audioSource.PlayOneShot(clip);
     }
 }

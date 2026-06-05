@@ -9,6 +9,9 @@ public class FoodScript : MonoBehaviour, IInteractable, IKeyOnlyInteractable
 	[SerializeField] private bool destroyOnPickup = true;
 	[SerializeField] private FoodCounter foodCounter;
 
+	[Header("Audio")]
+	[SerializeField] private AudioClip pickupClip;
+
 	[Header("Prompt UI")]
 	[SerializeField] private TMP_Text promptLabel;
 
@@ -71,6 +74,9 @@ public class FoodScript : MonoBehaviour, IInteractable, IKeyOnlyInteractable
 		}
 
 		foodCounter.ModifyFood(foodAmount);
+
+		if (pickupClip != null)
+			AudioSource.PlayClipAtPoint(pickupClip, transform.position);
 
 		if (destroyOnPickup)
 		{

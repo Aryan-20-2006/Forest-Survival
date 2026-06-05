@@ -24,6 +24,7 @@ public class CampfireDeposit : MonoBehaviour, IInteractable, IKeyOnlyInteractabl
 
     public int StoredWood => storedWood;
     public int MaxCapacity => maxCapacity;
+    public float BurnFuelRemaining => burnFuelRemaining;
 
     public event System.Action<int> OnStoredWoodChanged;
 

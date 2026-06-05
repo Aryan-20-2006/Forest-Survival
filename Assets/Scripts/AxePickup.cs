@@ -9,6 +9,9 @@ public class AxePickup : MonoBehaviour, IInteractable, IKeyOnlyInteractable
     [SerializeField] private GameObject handaxe;
     [SerializeField] private bool hidePickupObjectOnCollect = true;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip pickupClip;
+
     [Header("Prompt UI")]
     [SerializeField] private TMP_Text promptLabel;
 
@@ -66,6 +69,9 @@ public class AxePickup : MonoBehaviour, IInteractable, IKeyOnlyInteractable
         }
 
         collected = true;
+
+        if (pickupClip != null)
+            AudioSource.PlayClipAtPoint(pickupClip, transform.position);
 
         if (handaxe != null)
         {

@@ -7,6 +7,7 @@ public class FireSystem : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private CampfireDeposit campfireDeposit;
+    [SerializeField] private GameObject fireVFX;
     [SerializeField] private Image fireFill;
     [SerializeField] private Light campfirePointLight;
     [SerializeField] private TMP_Text fireWarningText;
@@ -53,6 +54,9 @@ public class FireSystem : MonoBehaviour
 
         hasBeenFueled = currentFire > 0f;
 
+        if (fireVFX != null)
+            fireVFX.SetActive(currentFire > 0f);
+
         EnsureDefaultFireGradient();
 
         UpdateFireVisuals();
@@ -83,6 +87,11 @@ public class FireSystem : MonoBehaviour
         if (storedWood > 0)
         {
             hasBeenFueled = true;
+            if (fireVFX != null) fireVFX.SetActive(true);
+        }
+        else
+        {
+            if (fireVFX != null) fireVFX.SetActive(false);
         }
 
         UpdateFireVisuals();
@@ -126,10 +135,7 @@ public class FireSystem : MonoBehaviour
 
     private void EnsureDefaultFireGradient()
     {
-        if (fireColorGradient == null)
-        {
-            fireColorGradient = new Gradient();
-        }
+        fireColorGradient ??= new Gradient();
 
         if (fireColorGradient.colorKeys != null && fireColorGradient.colorKeys.Length >= 3)
         {

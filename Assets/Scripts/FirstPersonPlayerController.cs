@@ -22,6 +22,16 @@ public class FirstPersonPlayerController : MonoBehaviour
     [SerializeField] private float jumpHeight = 1.4f;
     [SerializeField] private float gravity = -20f;
 
+    [Header("Footsteps")]
+    [SerializeField] private AudioClip footstepClip;
+    [SerializeField] private AudioClip woodFootstepClip;
+    [SerializeField] private string woodSurfaceTag = "Wood";
+    [SerializeField, Min(0.05f)] private float walkStepInterval = 0.5f;
+    [SerializeField, Min(0.05f)] private float sprintStepInterval = 0.3f;
+    [SerializeField, Range(0f, 1f)] private float footstepVolume = 0.6f;
+    [SerializeField] private float sprintPitchMin = 1.1f;
+    [SerializeField] private float sprintPitchMax = 1.4f;
+
     private CharacterController characterController;
     private InputAction moveAction;
     private InputAction lookAction;
@@ -31,11 +41,20 @@ public class FirstPersonPlayerController : MonoBehaviour
     private Vector3 cameraBaseLocalPosition;
     private Vector3 verticalVelocity;
     private float pitch;
+    private AudioSource footstepSource;
+    private float stepTimer;
+    private bool wasSprinting;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         CacheActions();
+
+        footstepSource = GetComponent<AudioSource>();
+        if (footstepSource == null)
+            footstepSource = gameObject.AddComponent<AudioSource>();
+        footstepSource.playOnAwake = false;
+        footstepSource.spatialBlend = 0f;
 
         if (cameraRoot == null)
         {
@@ -104,6 +123,45 @@ public class FirstPersonPlayerController : MonoBehaviour
         HandleLook();
         HandleMovement();
         UpdateBreathingEffect();
+        UpdateFootsteps();
+    }
+
+    private void UpdateFootsteps()
+    {
+        if (footstepClip == null || characterController == null) return;
+
+        bool isSprinting = sprintAction != null && sprintAction.IsPressed();
+        Vector2 moveInput = moveAction != null ? moveAction.ReadValue<Vector2>() : Vector2.zero;
+        bool isMoving = characterController.isGrounded && moveInput.sqrMagnitude > 0.01f;
+
+        if (!isMoving)
+        {
+            stepTimer = 0f;
+            wasSprinting = isSprinting;
+            return;
+        }
+
+        if (isSprinting != wasSprinting)
+        {
+            stepTimer = 0f;
+            wasSprinting = isSprinting;
+        }
+
+        stepTimer -= Time.deltaTime;
+        if (stepTimer > 0f) return;
+
+        stepTimer = isSprinting ? sprintStepInterval : walkStepInterval;
+        footstepSource.pitch = isSprinting ? Random.Range(sprintPitchMin, sprintPitchMax) : 1f;
+
+        AudioClip clip = footstepClip;
+        if (woodFootstepClip != null && Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 2f))
+        {
+            if (hit.collider.CompareTag(woodSurfaceTag))
+                clip = woodFootstepClip;
+        }
+
+        if (clip != null)
+            footstepSource.PlayOneShot(clip, footstepVolume);
     }
 
     private void HandleLook()

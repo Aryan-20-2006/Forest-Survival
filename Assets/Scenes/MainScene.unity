@@ -1100,7 +1100,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 06fd68682b675684fab6abac86704487, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9b731e3d04016d4479aee0eae67816e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2932,7 +2932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 338b2f380ec0e9e48a5ddc83d36b8592, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.667
+      value: 1.596
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 338b2f380ec0e9e48a5ddc83d36b8592, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3777,7 +3777,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 173, y: 261}
+  m_AnchoredPosition: {x: 173, y: 293}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &376743767
@@ -3800,7 +3800,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: THE CABIN
+  m_text: AMONG THE PINES
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4acdb85000843a74eba7417d5cb17e69, type: 2}
   m_sharedMaterial: {fileID: -174340411846244298, guid: 4acdb85000843a74eba7417d5cb17e69, type: 2}
@@ -3827,8 +3827,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -10281,7 +10281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &974782129
 Transform:
   m_ObjectHideFlags: 0
@@ -14734,7 +14734,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1384937017
 MonoBehaviour:
   m_ObjectHideFlags: 0

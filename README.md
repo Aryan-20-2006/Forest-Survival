@@ -8,10 +8,10 @@ The player must gather resources, manage hunger, maintain their campfire, and su
 
 ### Current Features
 - First-person movement
-- Interactable cabin door
+- Interactable environment
 - Small explorable environment
 
-### Planned Features
+### Features
 - Axe and tree chopping system
 - Wood gathering
 - Hunger system

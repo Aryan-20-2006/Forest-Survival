@@ -8,18 +8,16 @@ The player must gather resources, manage hunger, maintain their campfire, and su
 
 ### Current Features
 - First-person movement
-- Interactable cabin door
+- Interactable environment
 - Small explorable environment
 
-### Planned Features
+### Features
 - Axe and tree chopping system
 - Wood gathering
 - Hunger system
 - Food collection and consumption
 - Campfire fuel management
 - Day and night cycle
-- Lantern with fuel system
-- Dynamic weather (rain)
 - Win and lose conditions
 
 ## Gameplay Loop
@@ -46,13 +44,9 @@ This project is focused on:
 - Git
 - GitHub
 
-## Project Status
-
-🚧 In Development
-
 ## Screenshots
 
-Screenshots and gameplay footage will be added as development progresses.
+Screenshots and gameplay footage have been included
 
 ## Author
 

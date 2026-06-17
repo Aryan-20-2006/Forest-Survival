@@ -8,7 +8,7 @@ The player must gather resources, manage hunger, maintain their campfire, and su
 
 | Resource Collection | Day-Night Cycle & Campfire |
 |---|---|
-| ![Chopping wood](assets/survival_game_demo.gif) | ![Campfire interaction](assets/campfire_demo.gif) |
+| ![Chopping wood](Assets/survival_game_demo.gif) | ![Campfire interaction](Assets/campfire_demo.gif) |
 
 ## Features
 

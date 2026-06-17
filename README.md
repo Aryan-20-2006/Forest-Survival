@@ -4,14 +4,18 @@ A small first-person survival game developed in Unity during Summer 2026.
 
 The player must gather resources, manage hunger, maintain their campfire, and survive through multiple day-night cycles while exploring a small forest surrounding a cabin.
 
+## Demo
+
+| Resource Collection | Day-Night Cycle & Campfire |
+|---|---|
+| ![Chopping wood](assets/survival_game_demo.gif) | ![Campfire interaction](assets/campfire_demo.gif) |
+
 ## Features
 
-### Current Features
+### Core Systems
 - First-person movement
 - Interactable environment
 - Small explorable environment
-
-### Features
 - Axe and tree chopping system
 - Wood gathering
 - Hunger system
@@ -43,10 +47,6 @@ This project is focused on:
 - C#
 - Git
 - GitHub
-
-## Screenshots
-
-Screenshots and gameplay footage have been included
 
 ## Author
 

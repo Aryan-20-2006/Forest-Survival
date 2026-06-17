@@ -1,6 +1,8 @@
-# Cabin Survival
+# Among the Pines
 
-A small first-person survival game developed in Unity during Summer 2026.
+*A small first-person survival game (Cabin Survival)*
+
+Developed in Unity during Summer 2026.
 
 The player must gather resources, manage hunger, maintain their campfire, and survive through multiple day-night cycles while exploring a small forest surrounding a cabin.
 
